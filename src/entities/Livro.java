@@ -8,14 +8,16 @@ public class Livro {
     private String genero;
     private String autor;
     private Date anoPublicacao;
+    private boolean emprestado;
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 
-    public Livro(String titulo, String genero, String autor, Date anoPublicacao){
+    public Livro(String titulo, String genero, String autor, Date anoPublicacao, boolean emprestado){
         this.titulo = titulo;
         this.genero = genero;
         this.autor = autor;
         this.anoPublicacao = anoPublicacao;
+        this.emprestado = emprestado;
     }
 
 
@@ -56,6 +58,16 @@ public class Livro {
     public void setAnoPublicacao(Date anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
+
+    public boolean isEmprestado() {
+        return emprestado;
+    }
+
+
+    public void setEmprestado(boolean emprestado) {
+        this.emprestado = emprestado;
+    }
+
 
     public String toString(){
         return "Título: " + titulo + " Gênero: " + genero + " Autor: " + autor + " Ano de Publicação: " + sdf.format(anoPublicacao);
