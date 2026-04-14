@@ -9,7 +9,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class Program {
-    public static void main(String[] args) throws ParseException{
+    public static void main(String[] args) throws ParseException {
         try(Scanner sc = new Scanner(System.in)){
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
@@ -79,44 +79,54 @@ public class Program {
 
                 System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
                 System.out.println("Ele está disponível para empréstimo (s/n)?");
-                char emprestado = sc.next().charAt(0);
+                char emprestadoChar = sc.next().charAt(0);
+                boolean emprestado = emprestadoChar == 's';
+
                 Queue<Usuario> fila = new LinkedList<>();
 
-                System.out.println("Dê um ID a este livro: ");
-                Integer idLivro = sc.nextInt();
-                
+                Livro result;
+                Integer idLivroTemp;
 
-                Livro result = livros.stream()
-                .filter(Livro -> Livro.getIdLivro() == idLivro)
-                .findFirst().orElse(null);
+                do {
 
-                    if(result == null){
-                        Livro livro = new Livro(titulo, genero, autor, anoPublicacao, emprestado, fila, idLivro);
-                        livros.add(livro);
-                    } else {
-                        System.out.print("Esse id já existe, tente novamente!");
-                        return;
+                    System.out.println("Dê um ID a este livro: ");
+                    idLivroTemp = sc.nextInt();
+                    Integer idLivro = idLivroTemp;
+                    
+                    result = livros.stream()
+                    .filter(livro -> livro.getIdLivro() == idLivro)
+                    .findFirst().orElse(null);
+
+                    if(result != null){
+                        System.out.println("Esse id já existe, tente novamente!");
                     }
                 
+                } while (result != null);
+
+                if(result == null){
+                    Livro livro = new Livro(titulo, genero, autor, anoPublicacao, emprestado, idLivroTemp);
+                    livros.add(livro);
                 }
+
                 historicoNavegacao.registrar("2. Adicionar um Livro.");
+                }
             }
+                
 
             if(escolha == 3){
 
                 System.out.println("Digite o id do livro desejado: ");
                 int idLivroDesejado = sc.nextInt();
 
-                 Livro result = livros.stream()
+                Livro result = livros.stream()
                 .filter(Livro -> Livro.getIdLivro() == idLivroDesejado)
                 .findFirst().orElse(null);
 
                 if(result == null){
                     System.out.println("Esse id não existe. Tente novamente!");
-                    return;
                 }
 
-                if(livros.isEmprestado() == 's'){
+                if(result.isEmprestado() == 's'){
                     System.out.print(result);
                     System.out.println("Este livro não está disponível no momento!");
                     System.out.println("Deseja aguardar na fila de espera? (s/n)");
@@ -137,11 +147,11 @@ public class Program {
                 historicoNavegacao.registrar("3. Verificar Fila de Espera");
             }
 
-            }
-        }
 
-        }
-    }
+            } // while
+        } // scanner
+    } // fecha main
+} // fecha program
 
 
 //{"A rainha vermelha", "victoria aveyard", "fantasia", "2015"}

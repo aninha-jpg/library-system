@@ -11,18 +11,17 @@ public class Livro {
     private String autor;
     private final Integer idLivro;
     private Date anoPublicacao;
-    private char emprestado;
+    private boolean  emprestado;
     private Queue<Usuario> fila = new LinkedList<>();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 
-    public Livro(String titulo, String genero, String autor, Date anoPublicacao, char emprestado, Queue fila, Integer idLivro){
+    public Livro(String titulo, String genero, String autor, Date anoPublicacao, boolean emprestado, Integer idLivro){
         this.titulo = titulo;
         this.genero = genero;
         this.autor = autor;
         this.anoPublicacao = anoPublicacao;
         this.emprestado = emprestado;
-        this.fila = fila;
         this.idLivro = idLivro;
     }
 
