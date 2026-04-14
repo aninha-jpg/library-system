@@ -1,9 +1,11 @@
 import entities.Historico;
 import entities.Livro;
+import entities.Usuario;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Program {
@@ -20,24 +22,32 @@ public class Program {
         System.out.println("   Seja bem vindo!");
         System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
 
-        System.out.println();
+        System.out.println("Qual seu nome? ");
+        String nome = sc.nextLine();
+
+        Usuario usuario = new Usuario(nome);
 
         int escolha = 0;
 
-        while(escolha != 4){
+        while(escolha != 5){
 
-            System.out.println(" 1. Verificar Disponibilidade. \n 2. Adicionar um Livro. \n 3. Verificar histórico. \n 4. Finalizar");
+            System.out.println(" 1. Verificar Livros. \n 2. Adicionar um Livro. \n 3. Verificar Fila de Espera .\n 4. Verificar histórico. \n 5. Finalizar");
             escolha = sc.nextInt();
 
             sc.nextLine();
 
             if(escolha == 1){
-                System.out.println("Livros: ");
-                for(Livro l: livros){
-                    System.out.println(l);
-                }
+                System.out.println("Livros Adicionados: ");
 
-                historicoNavegacao.registrar("1. Verificar Disponibilidade.");
+                if(!livros.isEmpty()){
+                    for(Livro l: livros){
+                    System.out.print("ID: " + l.getIdLivro() + " ");
+                    System.out.print(l);
+                } 
+                } else {
+                    System.out.println("Lista vazia!");
+                }
+                historicoNavegacao.registrar("1. Verificar Livros.");
 
             }
 
@@ -47,40 +57,84 @@ public class Program {
             int n = sc.nextInt();
             sc.nextLine();
 
-            for(int i = 0; i<n; i++){
+                for(int i = 0; i<n; i++){
 
-            System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-            System.out.println("Qual é o título do " + (i + 1) + "o Livro? ");
-            String titulo = sc.nextLine();
-            System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-            System.out.println("Qual é o Gênero do livro? ");
-            String genero = sc.nextLine();
+                System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                System.out.println("Qual é o título do " + (i + 1) + "o Livro? ");
+                String titulo = sc.nextLine();
+                System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                System.out.println("Qual é o Gênero do livro? ");
+                String genero = sc.nextLine();
 
 
 
-            System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-            System.out.println("Qual é o Autor do livro? ");
-            String autor = sc.nextLine();
+                System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                System.out.println("Qual é o Autor do livro? ");
+                String autor = sc.nextLine();
 
-            System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-            System.out.println("Qual é o ano de publicação do livro? (YYYY) ");
-            Date anoPublicacao = sdf.parse(sc.next());
-            sc.nextLine();
+                System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                System.out.println("Qual é o ano de publicação do livro? (YYYY) ");
+                Date anoPublicacao = sdf.parse(sc.next());
+                sc.nextLine();
 
-            System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-            System.out.println("Ele está disponível para empréstimo (true/false)?");
-            boolean emprestado = sc.nextBoolean();
+                System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                System.out.println("Ele está disponível para empréstimo (s/n)?");
+                char emprestado = sc.next().charAt(0);
+                Queue<Usuario> fila = new LinkedList<>();
 
-            Livro livro = new Livro(titulo, genero, autor, anoPublicacao, emprestado);
+                System.out.println("Dê um ID a este livro: ");
+                Integer idLivro = sc.nextInt();
+                
 
-            livros.add(livro);
-            historicoNavegacao.registrar("2. Adicionar um Livro.");
-            
+                Livro result = livros.stream()
+                .filter(Livro -> Livro.getIdLivro() == idLivro)
+                .findFirst().orElse(null);
+
+                    if(result == null){
+                        Livro livro = new Livro(titulo, genero, autor, anoPublicacao, emprestado, fila, idLivro);
+                        livros.add(livro);
+                    } else {
+                        System.out.print("Esse id já existe, tente novamente!");
+                        return;
+                    }
+                
+                }
+                historicoNavegacao.registrar("2. Adicionar um Livro.");
             }
 
             if(escolha == 3){
-                historicoNavegacao.registrar("3. Verificar histórico.");
-                historicoNavegacao.mostrar();
+
+                System.out.println("Digite o id do livro desejado: ");
+                int idLivroDesejado = sc.nextInt();
+
+                 Livro result = livros.stream()
+                .filter(Livro -> Livro.getIdLivro() == idLivroDesejado)
+                .findFirst().orElse(null);
+
+                if(result == null){
+                    System.out.println("Esse id não existe. Tente novamente!");
+                    return;
+                }
+
+                if(livros.isEmprestado() == 's'){
+                    System.out.print(result);
+                    System.out.println("Este livro não está disponível no momento!");
+                    System.out.println("Deseja aguardar na fila de espera? (s/n)");
+                    char aguardarFila = sc.next().charAt(0);
+
+                    if(aguardarFila == 's'){
+                        
+                    } else {
+
+                    }
+
+                    
+
+                } else {
+                    System.out.print(result);
+                    System.out.println("Este livro está disponível. Deseja emprestar?");
+                }
+                historicoNavegacao.registrar("3. Verificar Fila de Espera");
             }
 
             }
@@ -88,7 +142,6 @@ public class Program {
 
         }
     }
-}
 
 
 //{"A rainha vermelha", "victoria aveyard", "fantasia", "2015"}

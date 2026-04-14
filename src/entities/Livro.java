@@ -2,22 +2,28 @@ package entities;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Livro {
     private String titulo;
     private String genero;
     private String autor;
+    private final Integer idLivro;
     private Date anoPublicacao;
-    private boolean emprestado;
+    private char emprestado;
+    private Queue<Usuario> fila = new LinkedList<>();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 
-    public Livro(String titulo, String genero, String autor, Date anoPublicacao, boolean emprestado){
+    public Livro(String titulo, String genero, String autor, Date anoPublicacao, char emprestado, Queue fila, Integer idLivro){
         this.titulo = titulo;
         this.genero = genero;
         this.autor = autor;
         this.anoPublicacao = anoPublicacao;
         this.emprestado = emprestado;
+        this.fila = fila;
+        this.idLivro = idLivro;
     }
 
 
@@ -59,15 +65,37 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
     }
 
-    public boolean isEmprestado() {
+    public char isEmprestado() {
         return emprestado;
     }
 
 
-    public void setEmprestado(boolean emprestado) {
+    public void setEmprestado(char emprestado) {
         this.emprestado = emprestado;
     }
 
+
+    public int getIdLivro() {
+        return idLivro;
+    }
+
+    public void inserirNaFila(Usuario usuario){
+        fila.add(usuario);
+    }
+
+    public void removerFila(Usuario usuario){
+        fila.remove(usuario);
+    }
+
+    public void mostrarFilaEspera(){
+        if(fila.isEmpty()){
+        System.out.println("Fila vazia");
+    } else {
+        for(Usuario c: fila){
+            System.out.println("Aguardando a vez: " + c.getNome());
+        }
+    }
+    }
 
     public String toString(){
         return "Título: " + titulo + " Gênero: " + genero + " Autor: " + autor + " Ano de Publicação: " + sdf.format(anoPublicacao);
