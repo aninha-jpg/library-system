@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Program {
@@ -37,17 +36,18 @@ public class Program {
             sc.nextLine();
 
             if(escolha == 1){
-                System.out.println("Livros Adicionados: ");
+                System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                System.out.println("Livros Adicionados: \n");
 
                 if(!livros.isEmpty()){
                     for(Livro l: livros){
-                    System.out.print("ID: " + l.getIdLivro() + " ");
+                    System.out.print("ID: " + l.getIdLivro() + " \n");
                     System.out.print(l);
                 } 
                 } else {
-                    System.out.println("Lista vazia!");
+                    System.out.println("Lista vazia! \n");
                 }
-                historicoNavegacao.registrar("1. Verificar Livros.");
+                historicoNavegacao.registrar("Verificar Livros.");
 
             }
 
@@ -78,19 +78,18 @@ public class Program {
                 sc.nextLine();
 
                 System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-                System.out.println("Ele está disponível para empréstimo (s/n)?");
+                System.out.println("Ele está emprestado (s/n)?");
                 char emprestadoChar = sc.next().charAt(0);
                 boolean emprestado = emprestadoChar == 's';
-
-                Queue<Usuario> fila = new LinkedList<>();
 
                 Livro result;
                 Integer idLivroTemp;
 
                 do {
-
+                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
                     System.out.println("Dê um ID a este livro: ");
                     idLivroTemp = sc.nextInt();
+                    sc.nextLine();
                     Integer idLivro = idLivroTemp;
                     
                     result = livros.stream()
@@ -98,6 +97,7 @@ public class Program {
                     .findFirst().orElse(null);
 
                     if(result != null){
+                        System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
                         System.out.println("Esse id já existe, tente novamente!");
                     }
                 
@@ -108,7 +108,7 @@ public class Program {
                     livros.add(livro);
                 }
 
-                historicoNavegacao.registrar("2. Adicionar um Livro.");
+                historicoNavegacao.registrar("Adicionar um Livro.");
                 }
             }
                 
@@ -126,25 +126,40 @@ public class Program {
                     System.out.println("Esse id não existe. Tente novamente!");
                 }
 
-                if(result.isEmprestado() == 's'){
-                    System.out.print(result);
+                if(result.isEmprestado() == true){
+                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                    result.mostrarFilaEspera();
+                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
                     System.out.println("Este livro não está disponível no momento!");
+
                     System.out.println("Deseja aguardar na fila de espera? (s/n)");
                     char aguardarFila = sc.next().charAt(0);
 
                     if(aguardarFila == 's'){
-                        
+                        result.inserirNaFila(usuario);
                     } else {
-
+                        System.out.println("Voltando ao menu...");
                     }
-
                     
 
                 } else {
-                    System.out.print(result);
-                    System.out.println("Este livro está disponível. Deseja emprestar?");
+                    System.out.println(result);
+                    System.out.println("Este livro está disponível. Deseja emprestar? (s/n)");
+                    char emprestarLivro = sc.next().charAt(0);
+
+                    if(emprestarLivro == 's'){
+                        result.setEmprestado(true);
+                    } else {
+                        System.out.println("Voltando ao menu...");
+                    }
+
                 }
-                historicoNavegacao.registrar("3. Verificar Fila de Espera");
+                historicoNavegacao.registrar("Verificar Fila de Espera");
+            }
+
+            if(escolha == 4){
+                historicoNavegacao.registrar("Verificar histórico");
+                historicoNavegacao.mostrar();
             }
 
 

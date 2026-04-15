@@ -64,12 +64,12 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
     }
 
-    public char isEmprestado() {
+    public boolean isEmprestado() {
         return emprestado;
     }
 
 
-    public void setEmprestado(char emprestado) {
+    public void setEmprestado(boolean emprestado) {
         this.emprestado = emprestado;
     }
 
