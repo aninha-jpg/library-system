@@ -204,12 +204,3 @@ public class Program {
 //{"A rainha vermelha", "victoria aveyard", "fantasia", "2015"}
 //{"O castelo animado", "Dianna Wyne Jones", "romance", "1986"}
 //{"Vidas secas", "Graciliano ramos", "romance", "1938"}
-
-
-// Implementação de fila: Vamos criar uma fila para gerenciar a lista de espera de livros. Em muitas bibliotecas, quando um livro está emprestado, outros usuários podem se inscrever para serem notificados ou receberem o livro assim que ele estiver disponível novamente. Sua tarefa é implementar uma fila que gerencie essa lista de espera de maneira eficiente e justa, usando a estrutura de dados queue do Java.
-// implementar a classe cliente, para pegar emprestado os livros.
-// implementar um while para o usuario navegar entre menus
-// implementar uma nova classe para pilha e fila
-// implementar nas filas(ex: um usuario entra na fila para determinado livro se ele já estiver emprestado/prog retorna livro já emprestado. deseja aguardar na fila?)
-// pilha conforme ele navega entre os itens ela guarda o histórico
-// Implementação de pilha: Paralelamente, desenvolva uma pilha para armazenar o histórico de navegação dos usuários no sistema. Cada vez que um usuário visualiza as informações de um livro, essa ação deve ser registrada. A pilha, implementada usando a estrutura stack do Java, deve permitir que o usuário veja quais livros ele consultou recentemente, com o livro mais recentemente visualizado no topo.
