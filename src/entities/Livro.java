@@ -11,7 +11,7 @@ public class Livro {
     private String autor;
     private final Integer idLivro;
     private Date anoPublicacao;
-    private boolean  emprestado;
+    private boolean emprestado;
     private Queue<Usuario> fila = new LinkedList<>();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
@@ -86,6 +86,15 @@ public class Livro {
         fila.remove(usuario);
     }
 
+    public void proximoFila(){
+        if(fila.isEmpty()){
+            System.out.println("Fila vazia");
+        } else {
+            Usuario proximo = fila.poll();
+            System.out.println("Livro enviado para o próximo da fila: " + proximo.getNome());
+            }
+    }
+
     public void mostrarFilaEspera(){
         if(fila.isEmpty()){
         System.out.println("Fila vazia");
@@ -95,9 +104,10 @@ public class Livro {
         }
     }
     }
+
     @Override
     public String toString(){
-        return "Título: " + titulo + " Gênero: " + genero + " Autor: " + autor + " Ano de Publicação: " + sdf.format(anoPublicacao);
+        return "\n Título: " + titulo + "\n Gênero: " + genero + "\n Autor: " + autor + "\n Ano de Publicação: " + sdf.format(anoPublicacao);
     }
 
 

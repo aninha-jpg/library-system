@@ -39,8 +39,9 @@ public class Program {
 
                 if(!livros.isEmpty()){
                     for(Livro l: livros){
-                    System.out.print("ID: " + l.getIdLivro() + " \n");
-                    System.out.print(l);
+                    System.out.print(" ID: " + l.getIdLivro() + " ");
+                    System.out.print(l + " \n");
+                    System.out.println();
                 } 
                 } else {
                     System.out.println("Lista vazia! \n");
@@ -146,7 +147,7 @@ public class Program {
 
                                 if(emprestarLivro == 's'){
                                     result.setEmprestado(true);
-                                    System.out.println("Você está aguardando. Assim que o Livro estiver disponível te avisaremos!");
+                                    System.out.println("Livro emprestado com sucesso!");
                                     System.out.println("Voltando ao menu...");
                                 } else {
                                     System.out.println("Voltando ao menu...");
@@ -161,6 +162,36 @@ public class Program {
             if(escolha == 4){
                 usuario.registrar("Verificar histórico");
                 usuario.mostrar();
+            }
+
+            if(escolha == 5){
+                Livro result;
+                Integer idLivroTemp;
+
+                System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                System.out.println("Qual o ID do livro que deseja devolver?");
+                idLivroTemp = sc.nextInt();
+                sc.nextLine();
+                Integer idLivro = idLivroTemp;
+                
+                result = livros.stream()
+                .filter(livro -> livro.getIdLivro() == idLivro)
+                .findFirst().orElse(null);
+
+                if(result == null){
+                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                    System.out.println("Esse id não existe, tente novamente!");
+                } else {
+                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                    System.out.println("Livro devolvido com sucesso!");
+                    result.setEmprestado(false);
+
+                    // notificar próximo da fila
+                    result.proximoFila();
+                }
+                
+                usuario.registrar("Devolver Livro");
+
             }
 
 
