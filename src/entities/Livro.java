@@ -95,7 +95,7 @@ public class Livro {
         }
     }
     }
-
+    @Override
     public String toString(){
         return "Título: " + titulo + " Gênero: " + genero + " Autor: " + autor + " Ano de Publicação: " + sdf.format(anoPublicacao);
     }

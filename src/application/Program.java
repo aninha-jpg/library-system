@@ -1,4 +1,4 @@
-import entities.Historico;
+package application;
 import entities.Livro;
 import entities.Usuario;
 import java.text.ParseException;
@@ -14,8 +14,6 @@ public class Program {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         
         LinkedList<Livro> livros = new LinkedList<>();
-        
-        Historico historicoNavegacao = new Historico();
 
         System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
         System.out.println("   Seja bem vindo!");
@@ -28,9 +26,9 @@ public class Program {
 
         int escolha = 0;
 
-        while(escolha != 5){
+        while(escolha != 6){
 
-            System.out.println(" 1. Verificar Livros. \n 2. Adicionar um Livro. \n 3. Verificar Fila de Espera .\n 4. Verificar histórico. \n 5. Finalizar");
+            System.out.println(" 1. Verificar Livros. \n 2. Adicionar um Livro. \n 3. Verificar Fila de Espera .\n 4. Verificar histórico. \n 5. Devolução de Livros. \n 6. Finalizar");
             escolha = sc.nextInt();
 
             sc.nextLine();
@@ -47,7 +45,7 @@ public class Program {
                 } else {
                     System.out.println("Lista vazia! \n");
                 }
-                historicoNavegacao.registrar("Verificar Livros.");
+                usuario.registrar("Verificar Livros.");
 
             }
 
@@ -108,7 +106,7 @@ public class Program {
                     livros.add(livro);
                 }
 
-                historicoNavegacao.registrar("Adicionar um Livro.");
+                usuario.registrar("Adicionar um Livro.");
                 }
             }
                 
@@ -122,44 +120,47 @@ public class Program {
                 .filter(Livro -> Livro.getIdLivro() == idLivroDesejado)
                 .findFirst().orElse(null);
 
-                if(result == null){
-                    System.out.println("Esse id não existe. Tente novamente!");
-                }
-
-                if(result.isEmprestado() == true){
-                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-                    result.mostrarFilaEspera();
-                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-                    System.out.println("Este livro não está disponível no momento!");
-
-                    System.out.println("Deseja aguardar na fila de espera? (s/n)");
-                    char aguardarFila = sc.next().charAt(0);
-
-                    if(aguardarFila == 's'){
-                        result.inserirNaFila(usuario);
+                    if(result == null){
+                        System.out.println("Esse id não existe. Tente novamente!");
                     } else {
-                        System.out.println("Voltando ao menu...");
+                        if(result.isEmprestado() == true){
+                            System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                            result.mostrarFilaEspera();
+                            System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                            System.out.println("Este livro não está disponível no momento!");
+
+                            System.out.println("Deseja aguardar na fila de espera? (s/n)");
+                            char aguardarFila = sc.next().charAt(0);
+
+                                if(aguardarFila == 's'){
+                                    result.inserirNaFila(usuario);
+                                } else {
+                                    System.out.println("Voltando ao menu...");
+                                }
+                            
+
+                        } else {
+                            System.out.println(result);
+                            System.out.println("Este livro está disponível. Deseja emprestar? (s/n)");
+                            char emprestarLivro = sc.next().charAt(0);
+
+                                if(emprestarLivro == 's'){
+                                    result.setEmprestado(true);
+                                    System.out.println("Você está aguardando. Assim que o Livro estiver disponível te avisaremos!");
+                                    System.out.println("Voltando ao menu...");
+                                } else {
+                                    System.out.println("Voltando ao menu...");
+                                }
+
+                        }
+                        
                     }
-                    
-
-                } else {
-                    System.out.println(result);
-                    System.out.println("Este livro está disponível. Deseja emprestar? (s/n)");
-                    char emprestarLivro = sc.next().charAt(0);
-
-                    if(emprestarLivro == 's'){
-                        result.setEmprestado(true);
-                    } else {
-                        System.out.println("Voltando ao menu...");
-                    }
-
+                    usuario.registrar("Verificar Fila de Espera");
                 }
-                historicoNavegacao.registrar("Verificar Fila de Espera");
-            }
 
             if(escolha == 4){
-                historicoNavegacao.registrar("Verificar histórico");
-                historicoNavegacao.mostrar();
+                usuario.registrar("Verificar histórico");
+                usuario.mostrar();
             }
 
 
