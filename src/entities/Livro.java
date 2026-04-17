@@ -111,10 +111,10 @@ public class Livro {
         return "\n Título: " + titulo + "\n Gênero: " + genero + "\n Autor: " + autor + "\n Ano de Publicação: " + sdf.format(anoPublicacao);
     }
 
-    // fazer recomendação por título e por autor
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true; // se for o mesmo objeto ele retorna true
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Livro livro = (Livro) o;
@@ -125,7 +125,7 @@ public class Livro {
     @Override
     public int hashCode() {
         return Objects.hash(titulo, autor);
-        // faz o hash e retorna um num//se for igual ele retorna o mesmo valor
+
     }
 }
 
