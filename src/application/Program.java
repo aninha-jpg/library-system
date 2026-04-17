@@ -15,6 +15,39 @@ public class Program {
         
         LinkedList<Livro> livros = new LinkedList<>();
 
+        Livro livro1 = new Livro("A Rainha Vermelha", "Fantasia", "Victoria Aveyard", sdf.parse("2015"), true, 12);
+
+        Livro livro2 = new Livro("O Castelo Animado", "Romance", "Diana Wynne Jones", sdf.parse("1986"), false, 14);
+
+        Livro livro3 = new Livro("A Casa dos Muitos Caminhos", "Romance", "Diana Wynne Jones", sdf.parse("2008"), true, 10);
+
+        Livro livro4 = new Livro("O Castelo no Ar", "Romance", "Diana Wynne Jones", sdf.parse("1990"), true, 9);
+
+        Livro livro5 = new Livro("Harry Potter e a Pedra Filosofal", "Fantasia", "J.K", sdf.parse("1997"), true, 6);
+
+        Livro livro6 = new Livro("Harry Potter e a Câmara Secreta", "Fantasia", "J.K", sdf.parse("1998"), false, 5);
+
+        Livro livro7 = new Livro("A Perdida", "Romance", "Carina Rissi", sdf.parse("2011"), true, 172);
+
+        Livro livro8 = new Livro("Battle Royale", "Terror", "Koushun Takami", sdf.parse("1999"), true, 200);
+
+        Livro livro9 = new Livro("Era uma vez um coração partido", "Fantasia", "Stephanie Garber", sdf.parse("2021"), false, 150);
+
+        Livro livro10 = new Livro("A Divina Comédia", "Epopeia", "Dante Alighieri", sdf.parse("1304"), true, 125);
+
+        livros.add(livro1);
+        livros.add(livro2);
+        livros.add(livro3);
+        livros.add(livro4);
+        livros.add(livro5);
+        livros.add(livro6);
+        livros.add(livro7);
+        livros.add(livro8);
+        livros.add(livro9);
+        livros.add(livro10);
+
+        
+
         System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
         System.out.println("   Seja bem vindo!");
         System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
@@ -199,8 +232,3 @@ public class Program {
         } // scanner
     } // fecha main
 } // fecha program
-
-
-//{"A rainha vermelha", "victoria aveyard", "fantasia", "2015"}
-//{"O castelo animado", "Dianna Wyne Jones", "romance", "1986"}
-//{"Vidas secas", "Graciliano ramos", "romance", "1938"}
