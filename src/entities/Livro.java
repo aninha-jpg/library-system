@@ -13,7 +13,7 @@ public class Livro {
     private final Integer idLivro;
     private Date anoPublicacao;
     private boolean emprestado;
-    private Queue<Usuario> fila = new LinkedList<>();
+    private final Queue<Usuario> fila = new LinkedList<>();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 
@@ -108,7 +108,7 @@ public class Livro {
 
     @Override
     public String toString(){
-        return "\n Título: " + titulo + "\n Gênero: " + genero + "\n Autor: " + autor + "\n Ano de Publicação: " + sdf.format(anoPublicacao);
+        return "\n Título: " + titulo + "\n Gênero: " + genero + "\n Autor: " + autor + "\n Ano de Publicação: " + sdf.format(anoPublicacao)+ "\n";
     }
 
 

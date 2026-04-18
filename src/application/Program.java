@@ -1,5 +1,6 @@
 package application;
 import entities.Livro;
+import entities.Relacionamento;
 import entities.Usuario;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,8 @@ public class Program {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         
         LinkedList<Livro> livros = new LinkedList<>();
+
+        Relacionamento recomendacoes = new Relacionamento();
 
         Livro livro1 = new Livro("A Rainha Vermelha", "Fantasia", "Victoria Aveyard", sdf.parse("2015"), true, 12);
 
@@ -45,6 +48,28 @@ public class Program {
         livros.add(livro8);
         livros.add(livro9);
         livros.add(livro10);
+
+        recomendacoes.adcLivro(livro1);
+        recomendacoes.adcLivro(livro2);
+        recomendacoes.adcLivro(livro3);
+        recomendacoes.adcLivro(livro4);
+        recomendacoes.adcLivro(livro5);
+        recomendacoes.adcLivro(livro6);
+        recomendacoes.adcLivro(livro7);
+        recomendacoes.adcLivro(livro8);
+        recomendacoes.adcLivro(livro9);
+        recomendacoes.adcLivro(livro10);
+
+        recomendacoes.adcLivrocomRecomendacao(livro1, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro2, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro3, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro4, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro5, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro6, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro7, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro8, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro9, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro10, livros);
 
         
 
@@ -138,6 +163,7 @@ public class Program {
                 if(result == null){
                     Livro livro = new Livro(titulo, genero, autor, anoPublicacao, emprestado, idLivroTemp);
                     livros.add(livro);
+                    recomendacoes.adcLivrocomRecomendacao(livro, livros);
                 }
 
                 usuario.registrar("Adicionar um Livro.");
@@ -171,6 +197,12 @@ public class Program {
                                 } else {
                                     System.out.println("Voltando ao menu...");
                                 }
+
+                            System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                            recomendacoes.recomendar(result);
+                            System.out.println("Se você gostou de: " + result.getTitulo());
+                            System.out.println("Que tal dar uma chance para: \n");
+                            System.out.println(recomendacoes.recomendar(result) + "\n");
                             
 
                         } else {
@@ -183,6 +215,11 @@ public class Program {
                                     System.out.println("Livro emprestado com sucesso!");
                                     System.out.println("Voltando ao menu...");
                                 } else {
+                                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                                    recomendacoes.recomendar(result);
+                                    System.out.println("Se você gostou de: " + result.getTitulo());
+                                    System.out.println("Que tal dar uma chance para: \n");
+                                    System.out.println(recomendacoes.recomendar(result) + "\n");
                                     System.out.println("Voltando ao menu...");
                                 }
 
@@ -219,8 +256,16 @@ public class Program {
                     System.out.println("Livro devolvido com sucesso!");
                     result.setEmprestado(false);
 
-                    // notificar próximo da fila
+                    System.out.println("Fila de empréstimo: ");
                     result.proximoFila();
+
+                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                    recomendacoes.recomendar(result);
+                    System.out.println("Se você gostou de: " + result.getTitulo());
+                    System.out.println("Que tal dar uma chance para: \n");
+                    System.out.println(recomendacoes.recomendar(result) + "\n");
+
+                    // notificar próximo da fila
                 }
                 
                 usuario.registrar("Devolver Livro");
