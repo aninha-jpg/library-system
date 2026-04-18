@@ -5,7 +5,7 @@ import java.util.Stack;
 public class Usuario {
 
     private String nome;
-    private Stack<String> historico = new Stack<>();
+    private final Stack<String> historico = new Stack<>();
 
     public Usuario(String nome){
         this.nome = nome;
