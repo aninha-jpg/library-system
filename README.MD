@@ -30,7 +30,7 @@ O objetivo é aplicar estruturas de dados como **Stack (pilha)** e **Queue (fila
 ### 📦 Queue (Fila) e Stack (Pilha)
 * Utilizadas para o gerenciamento de usuários em espera e histórico de navegação, respectivamente.
 
-### 🕸️ Grafos (Adjacency List)
+### 🕸️ Grafos
 * Os livros são tratados como nós em um grafo, onde as arestas representam conexões por **Gênero** ou **Autor**.
 
 ### 🛤️ Algoritmo de Dijkstra
