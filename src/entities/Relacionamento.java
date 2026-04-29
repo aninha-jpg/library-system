@@ -3,6 +3,8 @@ package entities;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 public class Relacionamento {
@@ -29,8 +31,36 @@ public class Relacionamento {
         recomendacoes.get(origem).add(destino);
     }
 
-    public Set<Livro> recomendar(Livro livro){
-        return recomendacoes.getOrDefault(livro, new HashSet<>());
+    public Map<Livro, Integer> djikstraSimples(Livro origem) {
+        Map<Livro, Integer> distancias = new HashMap<>();
+        Queue<Livro> fila = new LinkedList<>();
+
+        distancias.put(origem, 0);
+        fila.add(origem);
+
+        while (!fila.isEmpty()) {
+            Livro atual = fila.poll();
+            int distanciaAtual = distancias.get(atual);
+
+            for (Livro vizinho : recomendacoes.getOrDefault(atual, new HashSet<>())) {
+                if (!distancias.containsKey(vizinho)) {
+                    distancias.put(vizinho, distanciaAtual + 1);
+                    fila.add(vizinho);
+                }
+            }
+        }
+        return distancias;
+}
+
+    public void exibirCaminhosCurtos(Livro origem) {
+        Map<Livro, Integer> caminhos = djikstraSimples(origem);
+
+        caminhos.entrySet().stream()
+            .filter(entry -> !entry.getKey().equals(origem))
+            .sorted(Map.Entry.comparingByValue())
+            .forEach(entry -> {
+                System.out.println("Distância: " + entry.getValue() + " | Livro: " + entry.getKey().getTitulo());
+            });
     }
 
 }

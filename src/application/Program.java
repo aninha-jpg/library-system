@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Program {
@@ -38,6 +39,30 @@ public class Program {
 
         Livro livro10 = new Livro("A Divina Comédia", "Epopeia", "Dante Alighieri", sdf.parse("1304"), true, 125);
 
+
+        // livros para testar o algoritmo Dijkstra
+
+        Livro livro11 = new Livro("Vida Encantada", "Fantasia", "Diana Wynne Jones", sdf.parse("1977"), true, 130);
+
+
+        Livro livro12 = new Livro("IT a coisa", "Terror", "Stephen King", sdf.parse("1986"), true, 1);
+
+
+        Livro livro13 = new Livro("Sob a Redoma", "Romance", "Stephen King", sdf.parse("2009"), false, 1200);
+
+
+        Livro livro14 = new Livro("Doutor Sono", "Suspense", "Stephen King", sdf.parse("2013"), true, 12512);
+
+        Livro livro15 = new Livro("Persuasão", "Romance", "Jane Austen", sdf.parse("1817"), true, 300);
+
+        Livro livro16 = new Livro("Orgulho e Preconceito", "Romance", "Jane Austen", sdf.parse("1813"), true, 301);
+
+        Livro livro17 = new Livro("Outlander: A Viajante do Tempo", "Romance", "Diana Gabaldon", sdf.parse("1991"), true, 302);
+
+        Livro livro18 = new Livro("Outlander: A Libélula no Âmbar", "Fantasia", "Diana Gabaldon", sdf.parse("1992"), true, 303);
+
+
+
         livros.add(livro1);
         livros.add(livro2);
         livros.add(livro3);
@@ -48,6 +73,14 @@ public class Program {
         livros.add(livro8);
         livros.add(livro9);
         livros.add(livro10);
+        livros.add(livro11);
+        livros.add(livro12);
+        livros.add(livro13);
+        livros.add(livro14);
+        livros.add(livro15);
+        livros.add(livro16);
+        livros.add(livro17);
+        livros.add(livro18);
 
         recomendacoes.adcLivro(livro1);
         recomendacoes.adcLivro(livro2);
@@ -59,6 +92,14 @@ public class Program {
         recomendacoes.adcLivro(livro8);
         recomendacoes.adcLivro(livro9);
         recomendacoes.adcLivro(livro10);
+        recomendacoes.adcLivro(livro11);
+        recomendacoes.adcLivro(livro12);
+        recomendacoes.adcLivro(livro13);
+        recomendacoes.adcLivro(livro14);
+        recomendacoes.adcLivro(livro15);
+        recomendacoes.adcLivro(livro16);
+        recomendacoes.adcLivro(livro17);
+        recomendacoes.adcLivro(livro18);
 
         recomendacoes.adcLivrocomRecomendacao(livro1, livros);
         recomendacoes.adcLivrocomRecomendacao(livro2, livros);
@@ -70,6 +111,14 @@ public class Program {
         recomendacoes.adcLivrocomRecomendacao(livro8, livros);
         recomendacoes.adcLivrocomRecomendacao(livro9, livros);
         recomendacoes.adcLivrocomRecomendacao(livro10, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro11, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro12, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro13, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro14, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro15, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro16, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro17, livros);
+        recomendacoes.adcLivrocomRecomendacao(livro18, livros);
 
         
 
@@ -199,10 +248,20 @@ public class Program {
                                 }
 
                             System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-                            recomendacoes.recomendar(result);
                             System.out.println("Se você gostou de: " + result.getTitulo());
                             System.out.println("Que tal dar uma chance para: \n");
-                            System.out.println(recomendacoes.recomendar(result) + "\n");
+                            Map<Livro, Integer> caminhos = recomendacoes.djikstraSimples(result);
+
+                                if (caminhos.size() <= 1) {
+                                    System.out.println("Ainda não temos recomendações para este livro.");
+                                } else {
+                                    caminhos.entrySet().stream()
+                                        .filter(entry -> !entry.getKey().equals(result))
+                                        .sorted(Map.Entry.comparingByValue())
+                                        .forEach(entry -> {
+                                        System.out.println("Distância: " + entry.getValue() + " | " + entry.getKey().getTitulo());
+                                        });
+                                }
                             
 
                         } else {
@@ -216,10 +275,20 @@ public class Program {
                                     System.out.println("Voltando ao menu...");
                                 } else {
                                     System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-                                    recomendacoes.recomendar(result);
                                     System.out.println("Se você gostou de: " + result.getTitulo());
                                     System.out.println("Que tal dar uma chance para: \n");
-                                    System.out.println(recomendacoes.recomendar(result) + "\n");
+                                    Map<Livro, Integer> caminhos = recomendacoes.djikstraSimples(result);
+
+                                    if (caminhos.size() <= 1) {
+                                        System.out.println("Ainda não temos recomendações para este livro.");
+                                    } else {
+                                        caminhos.entrySet().stream()
+                                            .filter(entry -> !entry.getKey().equals(result))
+                                            .sorted(Map.Entry.comparingByValue())
+                                            .forEach(entry -> {
+                                            System.out.println("Distância: " + entry.getValue() + " | " + entry.getKey().getTitulo());
+                                            });
+                                    }
                                     System.out.println("Voltando ao menu...");
                                 }
 
@@ -260,11 +329,21 @@ public class Program {
                     result.proximoFila();
 
                     System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
-                    recomendacoes.recomendar(result);
+                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
                     System.out.println("Se você gostou de: " + result.getTitulo());
                     System.out.println("Que tal dar uma chance para: \n");
-                    System.out.println(recomendacoes.recomendar(result) + "\n");
+                    Map<Livro, Integer> caminhos = recomendacoes.djikstraSimples(result);
 
+                        if (caminhos.size() <= 1) {
+                            System.out.println("Ainda não temos recomendações para este livro.");
+                        } else {
+                            caminhos.entrySet().stream()
+                                .filter(entry -> !entry.getKey().equals(result))
+                                .sorted(Map.Entry.comparingByValue())
+                                .forEach(entry -> {
+                                System.out.println("Distância: " + entry.getValue() + " | " + entry.getKey().getTitulo());
+                                });
+                        }
                     // notificar próximo da fila
                 }
                 
