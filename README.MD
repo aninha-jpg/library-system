@@ -56,7 +56,7 @@ src/
 ├── entities/
 │   ├── Livro.java
 │   ├── Usuario.java
-│   └── Historico.java
+│   └── Relacionamento.java
 ```
 
 
