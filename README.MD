@@ -24,23 +24,26 @@ O objetivo é aplicar estruturas de dados como **Stack (pilha)** e **Queue (fila
 
 ---
 
-## 🧠 Estruturas de dados utilizadas
 
-### 📦 Queue (Fila)
+## 🧠 Estruturas de Dados e Algoritmos
 
-Utilizada para gerenciar a lista de espera de usuários quando um livro está emprestado.
+### 📦 Queue (Fila) e Stack (Pilha)
+* Utilizadas para o gerenciamento de usuários em espera e histórico de navegação, respectivamente.
 
-* Primeiro a entrar → primeiro a ser atendido (FIFO)
-* Implementação: `LinkedList<Usuario>`
+### 🕸️ Grafos (Adjacency List)
+* Os livros são tratados como nós em um grafo, onde as arestas representam conexões por **Gênero** ou **Autor**.
+
+### 🛤️ Algoritmo de Dijkstra
+* Implementado para calcular a **menor distância** entre dois títulos. Isso permite que o sistema recomende livros não apenas do mesmo autor (Distância 1), mas também livros relacionados por "pontes" de gênero (Distância 2 ou mais), criando uma rede de descoberta orgânica.
 
 ---
 
-### 📚 Stack (Pilha)
+## 🖼️ Demonstração do Algoritmo
 
-Utilizada para armazenar o histórico de navegação do usuário.
+Abaixo, um exemplo do sistema calculando as recomendações para o livro *Persuasão*. Note a navegação do Dijkstra alcançando diferentes níveis de proximidade (Distâncias 1, 2 e 3):
 
-- Última ação → primeiro a ser exibida (LIFO)
-- Implementação: `Stack<String>`
+![Resultado do Dijkstra](image/algoritmo.png)
+
 
 ---
 
@@ -102,6 +105,7 @@ Este projeto foi desenvolvido com foco em:
 - Expressões lambda
 - Stream API (`stream()`, `filter()`, `findFirst()`)
 - Programação funcional básica em Java
+- Algoritmo Dijkstra
 
 ---
 
