@@ -159,11 +159,8 @@ public class Program {
                     System.out.println("Dê um ID a este livro: ");
                     idLivroTemp = sc.nextInt();
                     sc.nextLine();
-                    Integer idLivro = idLivroTemp;
                     
-                    result = livros.stream()
-                    .filter(livro -> livro.getIdLivro() == idLivro)
-                    .findFirst().orElse(null);
+                    result = arvoreBinaria.buscarPorId(idLivroTemp);
 
                     if(result != null){
                         System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
@@ -187,9 +184,7 @@ public class Program {
                 System.out.println("Digite o id do livro desejado: ");
                 int idLivroDesejado = sc.nextInt();
 
-                Livro result = livros.stream()
-                .filter(Livro -> Livro.getIdLivro() == idLivroDesejado)
-                .findFirst().orElse(null);
+                Livro result = arvoreBinaria.buscarPorId(idLivroDesejado);
 
                     if(result == null){
                         System.out.println("Esse id não existe. Tente novamente!");
@@ -273,11 +268,8 @@ public class Program {
                 System.out.println("Qual o ID do livro que deseja devolver?");
                 idLivroTemp = sc.nextInt();
                 sc.nextLine();
-                Integer idLivro = idLivroTemp;
                 
-                result = livros.stream()
-                .filter(livro -> livro.getIdLivro() == idLivro)
-                .findFirst().orElse(null);
+                result = arvoreBinaria.buscarPorId(idLivroTemp);
 
                 if(result == null){
                     System.out.println("•━─────━❪ʚĭɞ❫━─────━•");

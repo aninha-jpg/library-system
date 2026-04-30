@@ -11,6 +11,19 @@ public class Arvore {
         
     }
 
+    public Livro buscarPorId(int id){
+        return buscarPorIdRc(raiz, id);
+    }
+
+    private Livro buscarPorIdRc(Node raizAtual, int id) {
+    if (raizAtual == null) return null;
+    if (id == raizAtual.getLivro().getIdLivro()) return raizAtual.getLivro();
+    
+    return id < raizAtual.getLivro().getIdLivro() 
+        ? buscarPorIdRc(raizAtual.getEsquerdo(), id) 
+        : buscarPorIdRc(raizAtual.getDireito(), id);
+}
+
     public void removerLivro(int idLivroRemover){
         raiz = removerLivroRecursivo(raiz, idLivroRemover);
     }
@@ -65,11 +78,9 @@ public class Arvore {
             return new Node(novoLivro);
         }
 
-        int comparacao = novoLivro.getTitulo().compareToIgnoreCase(raizAtual.getLivro().getTitulo());
-
-        if (comparacao < 0) {
-            raizAtual.setEsquerdo(adicionarRecursivo(raizAtual.getEsquerdo(), novoLivro));
-        } else if (comparacao > 0) {
+        if (novoLivro.getIdLivro() < raizAtual.getLivro().getIdLivro()) {
+        raizAtual.setEsquerdo(adicionarRecursivo(raizAtual.getEsquerdo(), novoLivro));
+        } else if (novoLivro.getIdLivro() > raizAtual.getLivro().getIdLivro()) {
             raizAtual.setDireito(adicionarRecursivo(raizAtual.getDireito(), novoLivro));
         }
 

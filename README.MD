@@ -21,6 +21,7 @@ O objetivo é aplicar estruturas de dados como **Stack (pilha)** e **Queue (fila
 * Histórico de navegação do usuário (Stack)
 * Validação de ID de livros
 * Menu interativo via console
+* Busca eficiente de livros por ID (Árvore Binária de Busca)
 
 ---
 
@@ -35,6 +36,10 @@ O objetivo é aplicar estruturas de dados como **Stack (pilha)** e **Queue (fila
 
 ### 🛤️ Algoritmo de Dijkstra
 * Implementado para calcular a **menor distância** entre dois títulos. Isso permite que o sistema recomende livros não apenas do mesmo autor (Distância 1), mas também livros relacionados por "pontes" de gênero (Distância 2 ou mais), criando uma rede de descoberta orgânica.
+
+### 🌳 Árvore Binária de Busca (BST)
+* **Organização e Busca:** Os livros são armazenados em uma Árvore Binária de Busca baseada em seus IDs. Isso permite que a busca, inserção e remoção de títulos ocorram de forma muito mais rápida do que em uma lista comum, operando em tempo logarítmico O(log n).
+* **Percurso em Ordem:** O sistema utiliza o percurso *in-order* para listar os livros cadastrados de forma ordenada automaticamente.
 
 ---
 
@@ -56,6 +61,8 @@ src/
 ├── entities/
 │   ├── Livro.java
 │   ├── Usuario.java
+│   ├── Node.java
+│   ├── Arvore.java
 │   └── Relacionamento.java
 ```
 
@@ -89,9 +96,10 @@ java application.Program
 Este projeto foi desenvolvido com foco em:
 
 * Programação Orientada a Objetos (POO)
-* Estruturas de dados (Stack e Queue)
+* Estruturas de dados (Stack, Queue e Binary Tree)
 * Simulação de sistema real
 * Lógica de fluxo com menu interativo
+
 
 ## 👩‍💻 Tecnologias utilizadas
 * Java
@@ -106,6 +114,7 @@ Este projeto foi desenvolvido com foco em:
 - Stream API (`stream()`, `filter()`, `findFirst()`)
 - Programação funcional básica em Java
 - Algoritmo Dijkstra
+- Árvore Binária
 
 ---
 
