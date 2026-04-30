@@ -97,7 +97,7 @@ public class Program {
         int escolha = 0;
 
         while(escolha != 7){
-
+            System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
             System.out.println(" 1. Verificar Livros. \n 2. Adicionar um Livro. \n 3. Verificar Fila de Espera. \n 4. Verificar histórico. \n 5. Devolução de Livros. \n 6. Ver Árvore de Livros \n 7. Finalizar");
             escolha = sc.nextInt();
 
@@ -306,7 +306,28 @@ public class Program {
             }
 
             if(escolha == 6){
-                arvoreBinaria.exibirEmOrdem(arvoreBinaria.getRaiz());
+                while(escolha != 4){
+                    System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
+                    System.out.println("\n 1. Visualizar Hierarquia (Em Ordem)\n 2. Buscar por Título (DFS - Profundidade\n 3. Buscar por Título (BFS - Largura)\n 4. Voltar ao Menu Principal.");
+                    escolha = sc.nextInt();
+                    sc.nextLine();
+
+                    if(escolha == 1){
+                        arvoreBinaria.exibirEmOrdem(arvoreBinaria.getRaiz());
+                    }
+                    if(escolha == 2){
+                            System.out.println("Qual título quer buscar (Profundidade)?");
+                            String t = sc.nextLine();
+                            
+                            arvoreBinaria.buscarDFS(arvoreBinaria.getRaiz(), t);
+                    }
+                    if(escolha == 3){
+                        System.out.println("Qual título quer buscar (Largura)?");
+                            String t = sc.nextLine();
+                            
+                            arvoreBinaria.buscarBFS(t);
+                    }
+                }
             }
 
 
