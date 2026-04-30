@@ -11,4 +11,29 @@ public class Node {
         this.direito = null;
     }
 
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
+    public Node getEsquerdo() {
+        return esquerdo;
+    }
+
+    public void setEsquerdo(Node esquerdo) {
+        this.esquerdo = esquerdo;
+    }
+
+    public Node getDireito() {
+        return direito;
+    }
+
+    public void setDireito(Node direito) {
+        this.direito = direito;
+    }
+    
+
 }

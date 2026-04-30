@@ -26,7 +26,6 @@ public class Livro {
         this.idLivro = idLivro;
     }
 
-
     public String getTitulo() {
         return titulo;
     }

@@ -1,4 +1,5 @@
 package application;
+import entities.Arvore;
 import entities.Livro;
 import entities.Relacionamento;
 import entities.Usuario;
@@ -9,6 +10,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public class Program {
     public static void main(String[] args) throws ParseException {
         try(Scanner sc = new Scanner(System.in)){
@@ -18,6 +20,8 @@ public class Program {
         LinkedList<Livro> livros = new LinkedList<>();
 
         Relacionamento recomendacoes = new Relacionamento();
+
+        Arvore arvoreBinaria = new Arvore();
 
         Livro livro1 = new Livro("A Rainha Vermelha", "Fantasia", "Victoria Aveyard", sdf.parse("2015"), true, 12);
 
@@ -61,66 +65,25 @@ public class Program {
 
         Livro livro18 = new Livro("Outlander: A Libélula no Âmbar", "Fantasia", "Diana Gabaldon", sdf.parse("1992"), true, 303);
 
+        cadastrarLivroNoSistema(livro1, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro2, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro3, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro4, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro5, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro6, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro7, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro8, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro9, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro10, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro11, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro12, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro13, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro14, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro15, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro16, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro17, recomendacoes, livros, arvoreBinaria);
+        cadastrarLivroNoSistema(livro18, recomendacoes, livros, arvoreBinaria);
 
-
-        livros.add(livro1);
-        livros.add(livro2);
-        livros.add(livro3);
-        livros.add(livro4);
-        livros.add(livro5);
-        livros.add(livro6);
-        livros.add(livro7);
-        livros.add(livro8);
-        livros.add(livro9);
-        livros.add(livro10);
-        livros.add(livro11);
-        livros.add(livro12);
-        livros.add(livro13);
-        livros.add(livro14);
-        livros.add(livro15);
-        livros.add(livro16);
-        livros.add(livro17);
-        livros.add(livro18);
-
-        recomendacoes.adcLivro(livro1);
-        recomendacoes.adcLivro(livro2);
-        recomendacoes.adcLivro(livro3);
-        recomendacoes.adcLivro(livro4);
-        recomendacoes.adcLivro(livro5);
-        recomendacoes.adcLivro(livro6);
-        recomendacoes.adcLivro(livro7);
-        recomendacoes.adcLivro(livro8);
-        recomendacoes.adcLivro(livro9);
-        recomendacoes.adcLivro(livro10);
-        recomendacoes.adcLivro(livro11);
-        recomendacoes.adcLivro(livro12);
-        recomendacoes.adcLivro(livro13);
-        recomendacoes.adcLivro(livro14);
-        recomendacoes.adcLivro(livro15);
-        recomendacoes.adcLivro(livro16);
-        recomendacoes.adcLivro(livro17);
-        recomendacoes.adcLivro(livro18);
-
-        recomendacoes.adcLivrocomRecomendacao(livro1, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro2, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro3, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro4, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro5, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro6, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro7, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro8, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro9, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro10, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro11, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro12, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro13, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro14, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro15, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro16, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro17, livros);
-        recomendacoes.adcLivrocomRecomendacao(livro18, livros);
-
-        
 
         System.out.println("•━─────━❪ʚĭɞ❫━─────━•");
         System.out.println("   Seja bem vindo!");
@@ -133,9 +96,9 @@ public class Program {
 
         int escolha = 0;
 
-        while(escolha != 6){
+        while(escolha != 7){
 
-            System.out.println(" 1. Verificar Livros. \n 2. Adicionar um Livro. \n 3. Verificar Fila de Espera .\n 4. Verificar histórico. \n 5. Devolução de Livros. \n 6. Finalizar");
+            System.out.println(" 1. Verificar Livros. \n 2. Adicionar um Livro. \n 3. Verificar Fila de Espera. \n 4. Verificar histórico. \n 5. Devolução de Livros. \n 6. Ver Árvore de Livros \n 7. Finalizar");
             escolha = sc.nextInt();
 
             sc.nextLine();
@@ -211,8 +174,7 @@ public class Program {
 
                 if(result == null){
                     Livro livro = new Livro(titulo, genero, autor, anoPublicacao, emprestado, idLivroTemp);
-                    livros.add(livro);
-                    recomendacoes.adcLivrocomRecomendacao(livro, livros);
+                    cadastrarLivroNoSistema(livro, recomendacoes, livros, arvoreBinaria);
                 }
 
                 usuario.registrar("Adicionar um Livro.");
@@ -351,8 +313,27 @@ public class Program {
 
             }
 
+            if(escolha == 6){
+                arvoreBinaria.exibirEmOrdem(arvoreBinaria.getRaiz());
+            }
+
 
             } // while
         } // scanner
     } // fecha main
+
+    public static void cadastrarLivroNoSistema(Livro novoLivro, Relacionamento r1, LinkedList<Livro> lista, Arvore arvoreBinaria) {
+    
+        // 1. Adiciona na lista geral de livros
+        lista.add(novoLivro);
+
+        // 2. Chama o método do objeto r1 que você criou
+        r1.adcLivro(novoLivro);
+
+        arvoreBinaria.adicionar(novoLivro);
+
+        // 3. Faz a conexão de recomendações
+        r1.adcLivrocomRecomendacao(novoLivro, lista);
+
+    }
 } // fecha program
